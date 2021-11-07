@@ -32,5 +32,5 @@ on-the-fly.
 3. Delete the config fragments if your backend is removed
 
 ## See also
-[https://github.com/KizzyCode/HaproxyAutoconfd-rust] for a shadow container that manages backend (de-)registration
-automatically.
+[https://github.com/KizzyCode/HaproxyAutoconfd-rust](https://github.com/KizzyCode/HaproxyAutoconfd-rust) for a shadow
+container that manages backend (de-)registration automatically.
