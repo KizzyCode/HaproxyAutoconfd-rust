@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  haproxy:
+    stop_signal: SIGTERM
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    volumes:
+      - ./example/haproxy.inbox:/usr/local/etc/haproxy.inbox:ro
+      - ./example/localhost-selfsigned.pem:/usr/local/etc/haproxy/tls.pem:ro

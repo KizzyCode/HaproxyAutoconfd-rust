@@ -1,0 +1,36 @@
+[package]
+name = "haproxy_autoconfd"
+version = "0.1.0"
+edition = "2021"
+authors = ["KizzyCode Software Labs./Keziah Biermann <development@kizzycode.de>"]
+keywords = []
+categories = []
+description = "`haproxy_autconfd` is a daemon that automatically assembles a HAProxy config and restarts HAProxy if the config changes"
+license = "BSD-2-Clause OR MIT"
+repository = "https://github.com/KizzyCode/haproxy_autoconfd-rust"
+readme = "README.md"
+
+
+[[bin]]
+name = "haproxy_autoconfd"
+path = "src/main.rs"
+
+
+[badges]
+appveyor = { repository = "KizzyCode/haproxy_autoconfd-rust" }
+
+
+[features]
+default = []
+
+
+[dependencies]
+signal-hook = "0.3"
+sha2 = "0.9"
+
+
+[profile.release]
+overflow-checks = true
+
+[profile.bench]
+overflow-checks = true
