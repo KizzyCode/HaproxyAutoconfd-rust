@@ -5,8 +5,8 @@ services:
     build:
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
-      - "8443:8443"
+      - "8080:80"
+      - "8443:443"
     volumes:
       - ./example/haproxy.inbox:/usr/local/etc/haproxy.inbox:ro
       - ./example/localhost-selfsigned.pem:/usr/local/etc/haproxy/tls.pem:ro

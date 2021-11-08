@@ -9,7 +9,6 @@ FROM haproxy:alpine
 COPY --from=buildenv /buildroot/target/release/haproxy_autoconfd /usr/local/bin/haproxy_autoconfd
 
 USER root
-RUN chown haproxy /usr/local/etc/haproxy
-
-USER haproxy
+EXPOSE 80
+EXPOSE 443
 CMD ["/usr/local/bin/haproxy_autoconfd"]
