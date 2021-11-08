@@ -1,0 +1,37 @@
+name: Create and publish a Docker image
+
+on:
+  push:
+  schedule:
+    - cron: "17 17 * * *" # Run at 17:17 every day
+
+env:
+  REGISTRY: ghcr.io
+  DOCKERFILE: Dockerfile
+  IMAGE_NAME: haproxy-autoconfd
+
+jobs:
+  build-and-push-image:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
+      - name: Login to Docker registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u "${{ github.actor }}" --password-stdin "${{ env.REGISTRY }}"
+      
+      - name: Build the Docker image
+        run: |
+          docker build . --file "${{ env.DOCKERFILE }}" --tag "${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest"
+
+      - name: Push the Docker image
+        run: |
+          docker push "${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest"
+      
