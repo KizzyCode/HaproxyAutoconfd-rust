@@ -8,7 +8,7 @@ on:
 env:
   REGISTRY: ghcr.io
   DOCKERFILE: Dockerfile
-  IMAGE_NAME: haproxy-autoconfd
+  IMAGE_TAG: kizzycode/haproxy-autoconfd:latest
 
 jobs:
   build-and-push-image:
@@ -25,13 +25,13 @@ jobs:
       
       - name: Login to Docker registry
         run: |
-          echo "${{ secrets.GITHUB_TOKEN }}" | docker login -u "${{ github.actor }}" --password-stdin "${{ env.REGISTRY }}"
+          docker login -u "${{ github.actor }}" -p "${{ secrets.GITHUB_TOKEN }}" "${{ env.REGISTRY }}"
       
       - name: Build the Docker image
         run: |
-          docker build . --file "${{ env.DOCKERFILE }}" --tag "${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest"
+          docker build . --file "${{ env.DOCKERFILE }}" --tag "${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}"
 
       - name: Push the Docker image
         run: |
-          docker push "${{ env.REGISTRY }}/${{ github.actor }}/${{ env.IMAGE_NAME }}:latest"
+          docker push "${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}"
       
