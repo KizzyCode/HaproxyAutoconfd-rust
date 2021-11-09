@@ -3,6 +3,7 @@ services:
   haproxy:
     stop_signal: SIGTERM
     build:
+      context: ./
       dockerfile: Dockerfile
     ports:
       - "8080:80"
