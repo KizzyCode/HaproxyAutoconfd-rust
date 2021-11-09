@@ -62,7 +62,7 @@ pub fn main() {
     child_event_source.event_attach(Event::Child, event_sender.clone());
 
     // Process incoming events
-    eprintln!("HAProxy-autoconf is up and running...");
+    eprintln!("haproxy-autoconfd is up and running...");
     for event in event_channel {
         match event {
             // Terminate the process
