@@ -1,7 +1,8 @@
 # Build the daemon
 FROM rust:alpine AS buildenv
 COPY ./ /buildroot
-RUN cargo build --release --manifest-path /buildroot/Cargo.toml
+RUN apk add git
+RUN cargo build --config=net.git-fetch-with-cli=true --release --manifest-path /buildroot/Cargo.toml
 
 
 # Build the real container
